@@ -5,7 +5,7 @@ import pytest
 
 ##############################
 # To install pytest, run pip install pytest
-# To run the tests, type in: pytest testing.py
+# To run the tests, type in: python -m pytest Testing.py
 
 ###############################
 NUM_COLUMNS = 7
@@ -24,7 +24,6 @@ def is_valid_location(board, column):
     to drop the piece in) is not full
     """
     print("TODO!")
-gui
 ###############################
 # Tests (no need to change these!)
 
