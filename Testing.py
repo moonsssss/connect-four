@@ -32,10 +32,18 @@ def get_next_open_row(board, column):
     Go through the rows (up and down) and find the first opening that's free.
     If you find an opening, return that row number
     """
+
+  
     # 1) Loop through the rows
+    
+    for i in range(NUM_ROWS):
+        
         # 2) If the column the player wants to drop their piece in is open,
         # return that row
-    pass
+
+        if board[i][column] == 0:
+            return i
+    
 
 ###############################
 
