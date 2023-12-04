@@ -58,7 +58,8 @@ def is_this_winning_move(board, piece):
     Return False if we don't find a winning move.
     """
     # Check the horizontal locations
-
+    for i in range(NUM_ROWS):
+        print(board[i])
     # Check the vertical locations
 
     # Check diaganols going up and to the left

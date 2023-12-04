@@ -7,13 +7,19 @@
 #         print(fruits[i])
 
 
-fruits = [
-    ["apple", "banana", "cherry"],
-    ["mango", "pineapple", "watermellon"],
-    ["orange", "kiwi", "pear"],
-    ["plum", "grapes", "blueberry"],
-    ]
+#fruits = [
+  #  ["apple", "banana", "cherry"],
+   # ["mango", "pineapple", "watermellon"],
+   # ["orange", "kiwi", "pear"],
+NUM_COLUMNS = 7
+NUM_ROWS = 6
 
-fruits[1][2] = "orange"
-fruits[2][0] = "watermellon"
-print (fruits)
+test = [1, 1, 1, 1, 2, 0, 1]
+#       0  1  2  3  4  5  6
+
+for col_i in range(4):
+    print (test[col_i])
+    print (test[col_i + 1])
+    print (test[col_i + 2])  
+    print (test[col_i + 3])
+    print()
