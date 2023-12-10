@@ -57,17 +57,28 @@ def is_this_winning_move(board, piece):
     4) Check diaganols going up and to the right, return True if you find a winning movez
     Return False if we don't find a winning move.
     """
+
     # Check the horizontal locations
     for i in range(NUM_ROWS):
-        print(board[i])
+        for col_i in range(4):
+            if  board[i][col_i] == board[i][col_i + 1] == board[i][col_i + 2] == board[i][col_i + 3] == piece:
+                
+                return True
+                
+
     # Check the vertical locations
+    for i in range(NUM_COLUMNS):
+        for row_i in range(3):
+            if  board[row_i][i] == board[row_i + 1][i] == board[row_i + 2][i] == board[row_i + 3][i] == piece:
+
+                return True
 
     # Check diaganols going up and to the left
 
     # Check diaganols going up and to the right
 
     return False
-###############################
+############################### 
 # Tests (no need to change these!)
 
 def print_board(board):
