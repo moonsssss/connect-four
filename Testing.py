@@ -74,9 +74,20 @@ def is_this_winning_move(board, piece):
                 return True
 
     # Check diaganols going up and to the left
+    for row_i in range(3):
+        for col_i in range(4):
+            if board[row_i][col_i] == board[row_i + 1][col_i + 1] == board[row_i + 2][col_i + 2] == board[row_i + 3][col_i + 3] == piece:
 
-    # Check diaganols going up and to the right
+                return True
 
+
+     # Check diaganols going up and to the right
+    for row_i in range(3, 6):
+        for col_i in range(4):
+            if board[row_i][col_i] == board[row_i - 1][col_i + 1] == board[row_i - 2][col_i + 2] == board[row_i - 3][col_i + 3] == piece:
+    
+                return True
+   
     return False
 ############################### 
 # Tests (no need to change these!)

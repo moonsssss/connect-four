@@ -27,28 +27,36 @@ def create_board():
 
 def drop_piece(board, row, column, piece):
     """
-    Update the board at the given row and column to the piece (which will be 1 or 2)
+    This will set the specified spot in the board to the piece (1 for player 1, 2 for player 2)
     """
-    print("TODO: drop_piece() Update the board")
+    board[row][column] = piece
 
 def is_valid_location(board, column):
     """
     This function checks to make sure the column (that the player wants
-    to drop the piece in) is not full.
-    If the column is not full, we can return true, otherwise return false.
+    to drop the piece in) is not full
     """
-    print("TODO: is_valid_location()")
+    if board[5][column] == 0:
+        return True
+    return False
 
 def get_next_open_row(board, column):
     """
     Go through the rows (up and down) and find the first opening that's free.
     If you find an opening, return that row number
     """
+
+  
     # 1) Loop through the rows
+    
+    for i in range(NUM_ROWS):
+        
         # 2) If the column the player wants to drop their piece in is open,
         # return that row
 
-
+        if board[i][column] == 0:
+            return i
+        
 def print_board(board):
     """
     Provided code, this will be useful to debug/see the board!
@@ -78,14 +86,37 @@ def is_this_winning_move(board, piece):
     4) Check diaganols going up and to the right, return True if you find a winning movez
     Return False if we don't find a winning move.
     """
+
     # Check the horizontal locations
+    for i in range(NUM_ROWS):
+        for col_i in range(4):
+            if  board[i][col_i] == board[i][col_i + 1] == board[i][col_i + 2] == board[i][col_i + 3] == piece:
+                
+                return True
+                
 
     # Check the vertical locations
+    for i in range(NUM_COLUMNS):
+        for row_i in range(3):
+            if  board[row_i][i] == board[row_i + 1][i] == board[row_i + 2][i] == board[row_i + 3][i] == piece:
+
+                return True
 
     # Check diaganols going up and to the left
+    for row_i in range(3):
+        for col_i in range(4):
+            if board[row_i][col_i] == board[row_i + 1][col_i + 1] == board[row_i + 2][col_i + 2] == board[row_i + 3][col_i + 3] == piece:
 
-    # Check diaganols going up and to the right
+                return True
 
+
+     # Check diaganols going up and to the right
+    for row_i in range(3, 6):
+        for col_i in range(4):
+            if board[row_i][col_i] == board[row_i - 1][col_i + 1] == board[row_i - 2][col_i + 2] == board[row_i - 3][col_i + 3] == piece:
+    
+                return True
+   
     return False
 
 
