@@ -195,11 +195,6 @@ while not gameover:
 
             # Get the x_position of where the mouse is
             x_position = event.pos[0]
-            pygame.draw.rect(screen, BLACK, (0,0,SCREEN_WIDTH,SQUARE_SIZE))
-            if turn == "PLAYER 1":
-                pygame.draw.circle(screen, RED, (x_position, 50), 45)
-            else:
-                pygame.draw.circle(screen, YELLOW, (x_position, 50), 45)
             # Draw the piece (matching the color for the player) where their mouse is
             # (pygame.draw.circle() may be helpful)
 
@@ -216,7 +211,13 @@ while not gameover:
             print_board(board)
 
     # You can delete the next 7 lines after you complete the text game!
-    
+    print(f"{turn}")
+    column_choice = int(input("choose (0-6)"))
+    while column_choice < 0 or column_choice > 6:
+        print(f"{turn}")
+        column_choice = int(input("please input a valid input. Choose (0-6)"))
+    player_action(column_choice)
+    print_board(board)
 
     draw_board(board)
     pygame.display.update()
