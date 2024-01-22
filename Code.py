@@ -135,8 +135,20 @@ def draw_board(board):
     # Update the board with pieces that have been placed
     # TODO
     # Loop over each column
+    for col in range(NUM_COLUMNS):
     # Loop over each row
+        for row in range(NUM_ROWS):
+            radius  = SQUARE_SIZE // 2
+            circle_x = (col * SQUARE_SIZE) + radius
+            circle_y = row * SQUARE_SIZE + radius + SQUARE_SIZE
+            if board[row][col] == 1:
+                pygame.draw.circle(screen, RED, (circle_x, circle_y), radius - 2)
+            
+            if board[row][col] == 2:
+                pygame.draw.circle(screen, YELLOW, (circle_x, circle_y), radius - 2)
+                
     # Draw a circle for each player's piece (refer to the board)
+
 
     pygame.display.update()
 board = create_board()
@@ -159,12 +171,9 @@ pygame.display.update()
 
 def player_action(column):
     global turn
+    column_choice = column 
     if turn == "PLAYER 1":
         # While working on the text version, uncomment out these lines
-        column_choice = int(input("Player 1 choose (0-6)"))
-        while column_choice < 0 or column_choice > 6:
-            column_choice = int(input("Player 1, please input a valid input. Choose (0-6)"))
-
         if is_valid_location(board, column_choice):
             row = get_next_open_row(board, column_choice)
             drop_piece(board, row, column_choice, 1)
@@ -200,7 +209,7 @@ while not gameover:
                 pygame.draw.circle(screen, RED, (x_position, 50), 45)
             else:
                 pygame.draw.circle(screen, YELLOW, (x_position, 50), 45)
-            # Draw the piece (matching the color for the player) where their mouse is
+            # Draw the piece (matching the color for the player) where their mouse is   
             # (pygame.draw.circle() may be helpful)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -212,7 +221,8 @@ while not gameover:
 
             # Player 1's turn
             column_choice = column
-            # player_action(column)
+            
+            player_action(column)
             print_board(board)
 
     # You can delete the next 7 lines after you complete the text game!
