@@ -57,23 +57,6 @@ def get_next_open_row(board, column):
         if board[i][column] == 0:
             return i
         
-def print_board(board):
-    """
-    Provided code, this will be useful to debug/see the board!
-    No need to change any code here, but we can talk about the logic!
-    """
-    print("     C0 C1 C2 C3 C4 C5 C6")
-    for row_i in reversed(range(len(board))):
-        row = board[row_i]
-        current_row = f"R{row_i}: ["
-        for col_i in range(len(row)):
-            column = row[col_i]
-            current_row += str(column)
-            if col_i != len(row) - 1:
-                current_row += ", "
-            else:
-                current_row += "]"
-        print(current_row)
 
 
 def is_this_winning_move(board, piece):
@@ -125,7 +108,6 @@ def draw_board(board):
     # (Provided)
     for col in range(NUM_COLUMNS):
         for row in range(NUM_ROWS):
-            # print(col, row)
             pygame.draw.rect(screen, BLUE, (col * SQUARE_SIZE, row * SQUARE_SIZE + SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             radius  = SQUARE_SIZE // 2
             circle_x = (col * SQUARE_SIZE) + radius
@@ -152,7 +134,6 @@ def draw_board(board):
 
     pygame.display.update()
 board = create_board()
-print_board(board)
 gameover = False
 # turn will represent whose turn it is ("PLAYER 1" or "PLAYER 2")
 turn = "PLAYER 1"
@@ -178,8 +159,7 @@ def player_action(column):
         if is_valid_location(board, column_choice):
             row = get_next_open_row(board, column_choice)
             drop_piece(board, row, column_choice, 1)
-            if is_this_winning_move(board, 1):
-                print("PLAYER 1 WINS!")   
+            if is_this_winning_move(board, 1):   
                 gameover = True 
         turn = "PLAYER 2"
     else:
@@ -188,7 +168,6 @@ def player_action(column):
             row = get_next_open_row(board, column_choice)
             drop_piece(board, row, column_choice, 2)
             if is_this_winning_move(board, 2):
-                print("PLAYER 2 WINS!")
                 gameover = True
         turn = "PLAYER 1"
 
@@ -214,17 +193,16 @@ while not gameover:
             # (pygame.draw.circle() may be helpful)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print(f"Debugging message: The mouse was clicked at this location: {event.pos}")
             # Get the x_position of where the mouse is
             x_position = event.pos[0]
             column = (x_position // SQUARE_SIZE)
-            print(f"Debugging message: Drop in column {column}")
+            
 
             # Player 1's turn
             column_choice = column
             
             player_action(column)
-            print_board(board)
+            
 
     # You can delete the next 7 lines after you complete the text game!
     
@@ -241,7 +219,6 @@ while not gameover:
         gameover_text_rect = gameover_text.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         screen.blit(gameover_text, gameover_text_rect)
         pygame.display.update()
-        print("Ending the game! ")
         pygame.time.wait(3000)
 
         
