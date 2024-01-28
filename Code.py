@@ -140,7 +140,7 @@ def draw_board(board):
         for row in range(NUM_ROWS):
             radius  = SQUARE_SIZE // 2
             circle_x = (col * SQUARE_SIZE) + radius
-            circle_y = row * SQUARE_SIZE + radius + SQUARE_SIZE
+            circle_y = (NUM_ROWS - row - 1) * SQUARE_SIZE + radius + SQUARE_SIZE
             if board[row][col] == 1:
                 pygame.draw.circle(screen, RED, (circle_x, circle_y), radius - 2)
             
@@ -171,6 +171,7 @@ pygame.display.update()
 
 def player_action(column):
     global turn
+    global gameover 
     column_choice = column 
     if turn == "PLAYER 1":
         # While working on the text version, uncomment out these lines
@@ -178,8 +179,8 @@ def player_action(column):
             row = get_next_open_row(board, column_choice)
             drop_piece(board, row, column_choice, 1)
             if is_this_winning_move(board, 1):
-                print("PLAYER 1 WINS!")
-                gameover = True
+                print("PLAYER 1 WINS!")   
+                gameover = True 
         turn = "PLAYER 2"
     else:
         # column_choice = int(input("Player 2 choose (0-6)"))
@@ -234,5 +235,13 @@ while not gameover:
     if gameover == True:
         # Gameover case, feel free to add to this!
         # As of right now, if a win is detected, it will wait 3 seconds and then close the game.
-        print("Ending the game!")
+       
+        font = pygame.font.SysFont("yugothicmedium", 60)
+        gameover_text = font.render("GAMEOVER",False, (147, 7, 247))
+        gameover_text_rect = gameover_text.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+        screen.blit(gameover_text, gameover_text_rect)
+        pygame.display.update()
+        print("Ending the game! ")
         pygame.time.wait(3000)
+
+        
